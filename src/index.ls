@@ -102,6 +102,22 @@ function Wrapper (lib)
 		publicKey = publicKey['get']()
 		free()
 		publicKey
+	/**
+	 * @param {!Uint8Array} publicKey
+	 * @param {!Uint8Array} secretKey
+	 *
+	 * @return {!Uint8Array}
+	 */
+	function keyExchange (publicKey, secretKey)
+		if !(publicKey instanceof Uint8Array) || !(secretKey instanceof Uint8Array)
+			throw new Error('not Uint8Array!')
+		sharedKey = allocate(32)
+		publicKey = allocate(0, publicKey)
+		secretKey = allocate(0, secretKey)
+		lib['_ed25519_key_exchange'](sharedKey, publicKey, secretKey)
+		sharedKey = sharedKey['get']()
+		free()
+		sharedKey
 	{
 		'ready'			: lib['then']
 		'createSeed'	: createSeed
@@ -109,6 +125,7 @@ function Wrapper (lib)
 		'sign'			: sign
 		'verify'		: verify
 		'getPublicKey'	: getPublicKey
+		'keyExchange'	: keyExchange
 	}
 
 
