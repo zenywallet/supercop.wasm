@@ -14,7 +14,7 @@
   gulp.task('build', ['wasm', 'minify']).task('wasm', function(callback){
     var files, functions, optimize, command;
     files = glob.sync('vendor/src/*.c').join(' ');
-    functions = JSON.stringify(['_malloc', '_free', '_ed25519_create_keypair', '_ed25519_sign', '_ed25519_verify', '_ed25519_get_publickey']);
+    functions = JSON.stringify(['_malloc', '_free', '_ed25519_create_keypair', '_ed25519_sign', '_ed25519_verify', '_ed25519_get_publickey', '_ed25519_key_exchange']);
     optimize = "-Oz --llvm-lto 1 --closure 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=[] -s DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=[]";
     command = "emcc src/supercop.c " + files + " --post-js src/bytes_allocation.js -o src/supercop.js -s MODULARIZE=1 -s 'EXPORT_NAME=\"__supercopwasm\"' -s EXPORTED_FUNCTIONS='" + functions + "' -s WASM=1 " + optimize;
     exec(command, function(error, stdout, stderr){

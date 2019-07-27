@@ -116,13 +116,33 @@
       free();
       return publicKey;
     }
+    /**
+     * @param {!Uint8Array} publicKey
+     * @param {!Uint8Array} secretKey
+     *
+     * @return {!Uint8Array}
+     */
+    function keyExchange(publicKey, secretKey){
+      var sharedKey;
+      if (!(publicKey instanceof Uint8Array) || !(secretKey instanceof Uint8Array)) {
+        throw new Error('not Uint8Array!');
+      }
+      sharedKey = allocate(32);
+      publicKey = allocate(0, publicKey);
+      secretKey = allocate(0, secretKey);
+      lib['_ed25519_key_exchange'](sharedKey, publicKey, secretKey);
+      sharedKey = sharedKey['get']();
+      free();
+      return sharedKey;
+    }
     return {
       'ready': lib['then'],
       'createSeed': createSeed,
       'createKeyPair': createKeyPair,
       'sign': sign,
       'verify': verify,
-      'getPublicKey': getPublicKey
+      'getPublicKey': getPublicKey,
+      'keyExchange': keyExchange
     };
   }
   if (typeof define === 'function' && define['amd']) {
