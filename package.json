@@ -1,7 +1,7 @@
 {
-	"name"            : "supercop.wasm",
-	"description"     : "orlp/ed25519 compiled to WebAssembly using Emscripten and optimized for small size",
-	"keywords"        : [
+	"name": "supercop.wasm",
+	"description": "orlp/ed25519 compiled to WebAssembly using Emscripten and optimized for small size",
+	"keywords": [
 		"ed25519",
 		"supercop",
 		"signature",
@@ -9,28 +9,28 @@
 		"wasm",
 		"emscripten"
 	],
-	"version"         : "5.0.1",
-	"homepage"        : "https://github.com/nazar-pc/supercop.wasm",
-	"author"          : "Nazar Mokrynskyi <nazar@mokrynskyi.com>",
-	"repository"      : {
-		"type" : "git",
-		"url"  : "git://github.com/nazar-pc/supercop.wasm.git"
+	"version": "5.0.1",
+	"homepage": "https://github.com/nazar-pc/supercop.wasm",
+	"author": "Nazar Mokrynskyi <nazar@mokrynskyi.com>",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/nazar-pc/supercop.wasm.git"
 	},
-	"license"         : "0BSD",
-	"main"            : "src/index.js",
-	"files"           : [
+	"license": "0BSD",
+	"main": "src/index.js",
+	"files": [
 		"src"
 	],
-	"scripts"         : {
-		"test"   : "tape tests/**/*.js",
-		"vendor" : "git clone https://github.com/orlp/ed25519.git vendor; cd vendor; git checkout 7fa6712ef5d581a6981ec2b08ee623314cd1d1c4",
-		"build"  : "gulp build"
+	"scripts": {
+		"test": "tape tests/**/*.js",
+		"vendor": "git clone https://github.com/orlp/ed25519.git vendor; cd vendor; git checkout 7fa6712ef5d581a6981ec2b08ee623314cd1d1c4",
+		"build": "gulp build"
 	},
-	"devDependencies" : {
-		"glob"        : "^7.1.2",
-		"gulp"        : "^3.9.1",
-		"gulp-rename" : "^1.2.2",
-		"gulp-uglify" : "^3.0.0",
-		"tape"        : "^4.9.0"
+	"devDependencies": {
+		"glob": "^7.1.2",
+		"gulp": "^3.9.1",
+		"gulp-rename": "^1.2.2",
+		"gulp-uglify": "^3.0.0",
+		"tape": "^4.9.0"
 	}
 }
