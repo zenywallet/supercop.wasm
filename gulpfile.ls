@@ -19,6 +19,7 @@ gulp
 			'_ed25519_create_keypair'
 			'_ed25519_sign'
 			'_ed25519_verify'
+			'_ed25519_get_publickey'
 		])
 		# Options that are only specified to optimize resulting file size and basically remove unused features
 		optimize	= "-Oz --llvm-lto 1 --closure 1 -s NO_EXIT_RUNTIME=1 -s NO_FILESYSTEM=1 -s EXPORTED_RUNTIME_METHODS=[] -s DEFAULT_LIBRARY_FUNCS_TO_INCLUDE=[]"

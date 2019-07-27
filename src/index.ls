@@ -88,13 +88,29 @@ function Wrapper (lib)
 		result		= lib['_ed25519_verify'](signature, message, message['length'], publicKey) == 1
 		free()
 		result
+	/**
+	 * @param {!Uint8Array} secretKey
+	 *
+	 * @return {!Uint8Array}
+	 */
+	function getPublicKey (secretKey)
+		if !(secretKey instanceof Uint8Array)
+			throw new Error('not Uint8Array!')
+		secretKey = allocate(0, secretKey)
+		publicKey = allocate(32)
+		lib['_ed25519_get_publickey'](secretKey, publicKey)
+		publicKey = publicKey['get']()
+		free()
+		publicKey
 	{
 		'ready'			: lib['then']
 		'createSeed'	: createSeed
 		'createKeyPair'	: createKeyPair
 		'sign'			: sign
 		'verify'		: verify
+		'getPublicKey'	: getPublicKey
 	}
+
 
 if typeof define == 'function' && define['amd']
 	# AMD
